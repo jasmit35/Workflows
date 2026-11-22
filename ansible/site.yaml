@@ -1,0 +1,15 @@
+---
+
+#  site.yaml - Converge the entire lambdaorg
+
+- name: Base configuration 
+
+  #  Ansible uses the name "hosts" but you will most often set it to
+  #   the name of one of the groups in your project
+  hosts: home_assistant_grp 
+
+  become: true
+  roles:
+    - common
+
+...

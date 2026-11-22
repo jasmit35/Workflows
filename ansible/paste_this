@@ -1,0 +1,9 @@
+#  A bunch of long ass commands I would rather comy and paste
+
+ll inventories/group_vars/
+vi inventories/group_vars/home_assistant.yaml
+
+ll roles/common
+vi roles/common/tasks/main.yaml
+
+

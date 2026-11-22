@@ -1,0 +1,18 @@
+---
+#  roles/common/tasks/main.yaml
+
+#  - name: Copy files to the projects ansible structure 
+#    ansible.builtin.copy:
+#      content:
+#      owner: root
+#      group: root
+#      mode: "0644"
+
+- name: Use templates to build more files in the projects ansible structure
+  ansible.builtin.template:
+    src: ansible.cfg.j2
+    dest: "{{ app_home }}/ansible/ansible.cfg"
+    owner: jeff
+    mode: "0644"
+
+...
