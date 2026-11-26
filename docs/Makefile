@@ -13,6 +13,10 @@ generate_docs: ## Use the Markdown to generate the HTML and PDF documentation
 	-V mainfont="Helvetica" \
 	-o '/Volumes/SharedSpace/project docs/Other Computer Projects/workflows/users_guide.pdf' \
 	users_guide.md
+	pandoc --toc=true --pdf-engine=xelatex --quiet \
+	-V mainfont="Helvetica" \
+	-o '/Volumes/SharedSpace/project docs/Other Computer Projects/workflows/users_guide.html' \
+	users_guide.md
 
 
 ################################################################################

@@ -5,14 +5,15 @@
 #    ansible.builtin.copy:
 #      content:
 #      owner: root
-#      group: root
+#      group: admin
 #      mode: "0644"
 
 - name: Use templates to build more files in the projects ansible structure
   ansible.builtin.template:
     src: ansible.cfg.j2
     dest: "{{ app_home }}/ansible/ansible.cfg"
-    owner: jeff
+    owner: root
+    group: admin 
     mode: "0644"
 
 ...

@@ -1,6 +1,8 @@
-# Workflows (revised)
+# Workflows - User's Guide
 
-## The beginning
+## Preliminary setup
+
+### Determine project type
 
 Think about the new project and decide what 'type' it is.
 All projects will normally fall into one of three 'types';
@@ -9,74 +11,252 @@ All projects will normally fall into one of three 'types';
 - Other Computer Projects
 - Non-Computer Projects
 
-Each has its own section in this document. Give them a quick review if necessary to decide
-which type is appropriate for the new project. 
-&nbsp;
+If it is not obvious what type the project is, you can review Appendix A. Some sections of this document apply to all three types. Other sections my only apply to one or two. 
 
-&nbsp;
+### Chose a name (all project types)
 
-### First steps
+A most important first step is to select an appropriate name for the project. It is going to be used for creating directories, documents and other items. Put some thought into this step before proceding. It is always possible to rename a project later, but the farher you are along with devlepment, the more difficult it becomes.
 
-Their are several steps that all three types have in common when first getting started.&nbsp;
+I refer to two types of names for each project. The internal and external name. The internal name is used for directories, files, and anything that might be part of  automation or code. We use snake case for that name. The external name is the one that will be seen in documentation and other places where it is "read" by humans rather than code. It uses camel case.
 
-&nbsp;
+I will use my implementation of Postgres in the examples so the project's name is "my_postgres" or "My Postgres" depending on where it is used.
 
-#### Chose a name
+For computer server projects we will often be implementing our own version of an external project. In that case the name would normally be "my_\<external_name\>". As shown for Postgres. Other projects within this type are the build out of a new server or cluster. In that case you can leave off the "my_" prefix. So "menaki", "babyblue01", "devl_swarm", etc. 
 
-An obvious first step is to select an appropriate name for the project. It is going to be used for creating directories, documents and other items. Put some thought into this step before proceding. It is always possible to rename a project, but the farher you are along with devlepment, the more difficult it becomes.
+For 'Other computer projects' and 'Non-computer projects' naming is not as straight forward. "Cloud Flare" for example is an 'OCP' project to implement a Cloud Flare account for my servers. "Security Cameras" might be an 'NCP' project to install and connect one or more cameras.
 
-For computer server projects we will often be implementing our own version of an external project. In that case the name should be "my_\<ExternalName\>". For example, I will use my implementation of Ansible in the examples so the project name is "my_ansible" or "My Ansible" depending on where it is used.
 
-Naming for 'Other computer projects' and 'Non-computer projects' is not as straight forward. "Cloud Flare" for example is an 'OCP' project to implement a Cloud Flare account for my servers."Security Cameras" might be an 'NCP' project to install and connect one or more cameras.&nbsp;
+## Tool setup
 
-&nbsp;
+It is time to start setting up the various "tools" that we will use for most projects. This is split into two stages explained below.
 
-#### Development setup (This step to be replaced with Ansible code)
+### Stage 1
+
+The first stage is basically to reserve our new project name in the tools. This should help to identify posible conflicts or concerns that might cause me to change the project name.
+
+#### Directories and files
+
+On the development machine (enki) use go_csp or go_ocp to move to the correct type directory for the project. List whats their to insure the name if free. Then create just the top level directory for the project.
+
+```
+go_ocp
+ll
+mkdir my_postgress
+```
+
+#### OmniFocus
+
+The first two project types are already in OF so all you need to do is add the new project to them. If the project was already added and it is the right one, review any existing task. Hold off on adding more task until later.
+
+Non-Computer projects are handled differently. Their are top level directories for things like "Automobiels", "Financial", "House & Home", etc. Thier is a "projects" folder under each of those these. Add the new non-computer project there.
+
+#### Safari
+
+I add a bookmark folder to Safari to hold bookmarks related to the project. The three project types are already created, so at this stage just add a new folder to the approprate one. No need to start populating it until later when working on the project.
+
+#### Git and GitHub
+
+All of the first two types of projects should have a Git repository on Synology. Non-computer projects will only use Git if they contain digit documents that would benifit from version control. The instructions for setting up the repository are in Appendix A. That is because existing projects may not have a repository, so they need to reference "Appendix A" during different stages of development in their workflow. 
+
+As for GitHub, it is a judgement call for each project. If the project has a lot of code and would benifit from GitHub features like DeependaBot, then create the GitHub repository. You would also need to decide if it will be a public or private repository.
+
+
+### Stage 2
+
+The second stage of my workflow is to "flesh out" what has already been created. This could be runnig a scrpt to create more of the standard directory structure, Adding task to OmniFocus etc.
+
+#### Directories and files
 
 On my development machine (currently "enki"), use "uv" to create the initial new directory and structure rather than "mkdir". It creates a bunch of Python related stuff that you may not use, but it is easy to ignore until you are SURE you will never use Python as a part of the project. It can then easily be deleted.
 
-```bash
-go_csp
-export my_new_proj=home_assistant ; echo ${my_new_proj}
-mdcd ${my_new_proj}
+First lets set up some environment variables to work with our project. Then use them to run "uv".
+
+```zsh
+export my_new_proj="<project_name>"
+```
+
+```
+export my_new_proj_type="computer_server_projects"
+--- or ---
+export my_new_proj_type="other_computer_projects"
+```
+
+```zsh
+export my_new_proj_home="${HOME}/devl/${my_new_proj_type}/${my_new_proj}"
+mdcd ${my_new_proj_home}
 uv init --name ${my_new_proj} --python 3.14 --vcs git --app
 ```
 
-Remember DON'T use Camel Case syntax for the name (i.e. NOT "MyAnsible") instead use Snake Case (i.e. "my_ansible"). Use snake case for all directory and file names. Only use camel case where the name is purely visual like within documentation.
+Remember DON'T use Camel Case syntax for the name (i.e. NOT "MyPostges") instead use Snake Case (i.e. "my_postgres"). Use snake case for all directory and file names. Only use camel case where the name is purely visual like within documentation.
 
-Use the current version of the Ansible Playbook "init-proj-files" from my "Workflows" project to automatically build what we can.
 
-Build some stuff by hand (for now).
+# jasmit You are here!
+
+
+#### OmniFocus
+
+#### Safari
+
+#### Git and Github
+
+## Initial development
+
+## Bug fixes
+
+## Enhancements
+
+## Project appendixes
+
+### Apendix 1 - Project "Types"
+
+### Apendix 2 - Version numbering
+
+## Tool apendixes
+
+### Apendix A - Git and GitHub
+
+As previously documented all CSP, OCP and even some non-computer projects will have a Git repository on Synology. A repository on GitHub is optional.
+
+Their are three portions to get this set up. The ones needed depend on the projects workflow status at this point.
+
+#### Git local repository
+
+Check the home directory for the project. If it has a ".git" directory the local repository is already established and you can skip the next step.
+
+To build a local git repository follow these commands:
 
 ```
-go_csp ; cd ${my_new_proj} ; pwd
+cd ${app_project_home}
+git init
+git add .
+git commit -m 'Initial commit.'
+git status
+```
+
+#### Git remote respository - Synology
+
+Determine if the project already uses Synology as a remote:
+
+```
+cd ${app_project_home}
+git remote -v
+```
+
+If you see Synology already listed, skip to the next step. Otherwise sign on to the Synology server and create a new directory for the project. Use the directory to store a new empty Git repository.
+
+```zsh
+ssh -p 2222 synology.local
+
+cd /volume2/GITRepo
+mkdir <project_name>.git
+chmod 0750 <project_name>.git
+cd <project_name>.git
+git init --bare
+exit
+```
+
+Now get everything created so far into the new remote repository:
+
+```
+cd ${my_new_proj_home} ; pwd
+git remote add synology ssh://jeff@synology.local:2222/volume2/GITRepo/${my_new_proj}.git
+git remote -v
+git push synology
+git pull synology
+git add .
+git commit -m 'First push to Synology.'
+git push synology
+git status
+```
+
+# jasmit you are here!
+
+If the project needs a repository on GitHub, we do basically the same thing we did for Synology.
+See if it already exist. If not, create it. Get our code base set up to use it, then get them both in sync.
+
+
+
+
+
+
+
+git remote add github https://github.com/jasmit35/`*project_name*`.git
+
+git pull github
+git push github
+
+
+
+### Apendix B - Python - Tips and Tricks
+
+### Appendix C - Markdown - Tips and Tricks
+
+### Appendix D - Ansible - Tips and Tricks
+
+## --- EOD ---
+
+
+
+**Ansible portion:**
+
+Build some of the Ansible stuff (by hand for now).
+
+On the target machine for the project:
+
+```zsh
+cd ${my_new_proj_home} ; pwd
 mdcd ansible
-ln -s ~/devl/other_computer_projects/my_ansible/ansible/inventories/devl inventories
+ln -s ~/devl/other_computer_projects/my_ansible/ansible/inventories/devl inventory
 mkdir playbooks
 mkdir roles
 ansible-galaxy role init common --init-path roles
 ```
 
-&nbsp;
+Use the current version of the Ansible Playbook "site.yaml" from my "Workflows" project to automatically build what we can.
 
-&nbsp;
+First make sure you have switched to the machine and project directory for "Workflows". Create the file to hold the group_var variables for the project.
 
-Ansible
-
-Edit the file to set the value for "hosts:" to the new projects' group name.
-
-```
-cd ~/devl/other_computer_projects/workflows/ansible
-vi site.yaml
+```zsh
+echo ${my_new_proj}
+cd ~/devl/other_computer_projects/workflows/ansible ; pwd
+touch inventory/group_vars/${my_new_proj}_grp.yaml
 ```
 
-&nbsp;
+Load some initial items into the file:
 
-&nbsp;
+```
+echo "---" >>inventory/group_vars/${my_new_proj}_grp.yaml
+echo "app_name: ${my_new_proj}" >>inventory/group_vars/${my_new_proj}_grp.yaml
+echo "..." >>inventory/group_vars/${my_new_proj}_grp.yaml
+```
+
+Edit the files to set the correct values for the new project's group name.
+
+```zsh
+echo ${my_new_proj_home}
+vi ${my_new_proj_home}/ansible/site.yaml
+vi inventory/group_vars/explorer_grp.yaml
+```
+
+You shuld be able to run and possibly have to debug the ansible playbook for the new app:
+
+```zsh
+cd ~/devl/other_computer_projects/workflows/ansible ; pwd
+ansible-playbook site.yaml
+```
+
+Perform the first git commit. 
+
+```
+cd
+git add .
+git commit -m "Initial commit. The manual portion of the "Workflow" setup has been completed. This commit is just before we start the Ansible automated portion."
+git status
+```
 
 #### OmniFocus
 
-Create a new project (normally a single action project) with our new name in the correct already existing 'type' folder. It is not necessry to start adding and scheduling task at this time (unless known). You just want to reserve the project name and to have an obivious place to add tasks as you come up with them.
+Create a new project (normally a single action project) with our new name in the correct already existing 'type' folder. It is not necessry to start adding and scheduling task at this time (unless known some already). You just want to reserve the project name and to have an obivious place to add tasks as you come up with them.
 
 #### Safari bookmarks
 
@@ -87,11 +267,9 @@ Use "Edit Bookmarks" to create a new folder under the exisitng approriate 'type'
 Always create a repository on Synology for the project. The instructions are in Appendix A of this document. Decide if the project also needs a repository on GitHub. I will document the reasons why it might at some point, but for now it's just a gut feel.
 
 If you are not certain about the project name you can delay this stem until the repository is actually needed.
-&nbsp;
 
-&nbsp;
 
-## Bug fixes
+## Making bug fixes
 
 Use git to pull the existing code from the master branch on GitHub:
 
@@ -131,8 +309,6 @@ Once all desired bug fixes and new features have been completed, create a new re
 &nbsp;
 
 &nbsp;
-
-## Workflows (still needs revision)
 
 ## <a name="computer-server-projects"></a>Computer Server Projects
 
@@ -279,41 +455,6 @@ services/user/
 
 ## Appendix A - Establishing a GIT repository on Synology
 
-Many if not all of my projects will use GIT as the Version Control System (VCS). Rather than go thru the hassle of creating a repository on GitHub for all of them, I will use my Synology NAS. This works well for my Linux and MacOS systems. And I don't care about Windows at this time.
-
-### Create the repository
-
-Sign on to the Synology server and create a new directory for the project:
-
-```bash
-ssh -p 2222 synology.local
-
-cd /volume2/GITRepo
-mkdir <project_name>.git
-chmod 0750 <project_name>.git
-cd <project_name>
-git init --bare
-```
- 
-### Add the repository to the project
-
-
-## Appendix B - Initial GIT commit and push
-
-```bash
-cd /Users/jeff/devl/<project name>/
-git init
-git add .
-git commit -m 'Initial Commit'
-
-git remote add github https://github.com/jasmit35/`*project_name*`.git
-git remote add synology ssh://jeff@synology.local:2222/volume2/GITRepo/<Project>.git
-
-git pull github
-git push github
-
-git pull synology
-git push synology
 ```
 
 # Appendix Z - ? Markdown
